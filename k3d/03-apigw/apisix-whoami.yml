@@ -1,0 +1,14 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: apisix-whoami-route
+  namespace: default
+spec:
+  http:
+    - name: route-1
+      match:
+        paths:
+          - /*
+      backends:
+        - serviceName: whoami-service
+          servicePort: http
