@@ -8,7 +8,7 @@ spec:
     - name: route-1
       match:
         paths:
-          - /*
+          - /v1/*
       backends:
         - serviceName: whoami-service
           servicePort: http
