@@ -1,0 +1,11 @@
+---
+apiVersion: apisix.apache.org/v2
+kind: ApisixConsumer
+metadata:
+  name: jwt-consumer
+spec:
+  authParameter:
+    jwtAuth:
+      value:
+        key: main
+        secret: MY_APPLICATION_JWT_SECRET_KEY_DUMMY

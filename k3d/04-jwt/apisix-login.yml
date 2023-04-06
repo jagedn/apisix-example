@@ -1,0 +1,14 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: apisix-login-route
+  namespace: default
+spec:
+  http:
+    - name: route-login
+      match:
+        paths:
+          - /login
+      backends:
+        - serviceName: user-service
+          servicePort: http

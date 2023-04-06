@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+      - name: user-service
+        image: jagedn/monolito
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+            name: http
+        env:
+          - name: MICRONAUT_SECURITY_TOKEN_JWT_SIGNATURES_SECRET_GENERATOR_SECRET
+            value: MY_APPLICATION_JWT_SECRET_KEY_DUMMY
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service
+spec:
+  ports:
+  - name: http
+    targetPort: http
+    port: 8080
+  selector:
+    app: user-service
