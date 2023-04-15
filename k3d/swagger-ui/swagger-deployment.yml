@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swagger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: swagger
+  template:
+    metadata:
+      labels:
+        app: swagger
+    spec:
+      containers:
+      - name: swagger-container
+        image: swaggerapi/swagger-ui
+        volumeMounts:
+          - mountPath: /usr/share/nginx/html/swagger-initializer.js
+            name: swagger-config
+            subPath: swagger-initializer.js
+          - mountPath: /docker-entrypoint.d/40-swagger-ui.sh
+            name: swagger-config
+            subPath: 40-swagger-ui.sh
+      volumes:
+      - name: swagger-config
+        configMap:
+          name: swagger-config
+          items:
+          - key: 40-swagger-ui.sh
+            path: 40-swagger-ui.sh
+          - key: swagger-initializer.js
+            path: swagger-initializer.js

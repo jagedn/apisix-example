@@ -1,0 +1,18 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: apisix-swagger-route
+spec:
+  http:
+    - name: swagger-route
+      match:
+        paths:
+          - /swagger/*
+      plugins:
+      - name: proxy-rewrite
+        enable: true
+        config: 
+          regex_uri: ["/swagger/(.*)", "/$1"]
+      backends:
+        - serviceName: swagger-service
+          servicePort: http
