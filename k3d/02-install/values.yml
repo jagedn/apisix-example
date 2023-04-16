@@ -6,3 +6,53 @@ ingress-controller:
   config:
     apisix:
       serviceNamespace: apisix
+
+plugins:
+    - api-breaker
+    - authz-keycloak
+    - basic-auth 
+    - batch-requests
+    - consumer-restriction
+    - cors       
+    - echo       
+    - fault-injection     
+    - file-logger
+    - grpc-transcode
+    - grpc-web   
+    - hmac-auth  
+    - http-logger
+    - ip-restriction
+    - ua-restriction   
+    - forward-auth   
+    - jwt-auth   
+    - kafka-logger  
+    - key-auth   
+    - limit-conn 
+    - limit-count
+    - limit-req  
+    - node-status
+    - openid-connect
+    - authz-casbin  
+    - prometheus 
+    - proxy-cache
+    - proxy-mirror  
+    - proxy-rewrite 
+    - redirect   
+    - referer-restriction 
+    - request-id 
+    - request-validation  
+    - response-rewrite    
+    - serverless-post-function
+    - serverless-pre-function 
+    - sls-logger 
+    - syslog     
+    - tcp-logger 
+    - udp-logger 
+    - uri-blocker
+    - wolf-rbac  
+    - zipkin     
+    - traffic-split 
+    - gzip       
+    - real-ip          
+    - ext-plugin-pre-req  
+    - ext-plugin-post-req  

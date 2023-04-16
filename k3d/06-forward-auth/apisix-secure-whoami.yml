@@ -1,0 +1,28 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: apisix-whoami-route-v3
+  namespace: default
+spec:
+  http:
+    - name: route-3
+      match:
+        paths:
+          - /v3/*
+      backends:
+        - serviceName: whoami-service
+          servicePort: http
+      authentication:
+        enable: true
+        type: jwtAuth      
+      plugins:
+        - name: forward-auth
+          enable: true
+          config:
+            uri: http://user-service.default.svc.cluster.local:8080/user-details
+            request_headers:
+              - Authorization
+            upstream_headers:
+              - X-USER-NAME
+              - X-RANDOM
+
