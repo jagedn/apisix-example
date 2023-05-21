@@ -1,0 +1,23 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: apisix-sleep-route
+  namespace: default
+spec:
+  http:
+    - name: route-sleep
+      match:
+        paths:
+          - /v3/*
+      backends:
+        - serviceName: user-service
+          servicePort: http
+      timeout:
+        connect: 5s
+        read: 10m
+        send: 10s
+      plugins:
+        - name: proxy-rewrite
+          enable: true
+          config:
+            regex_uri: ["/v3/(.*)", "/$1"]
