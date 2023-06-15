@@ -1,3 +1,4 @@
 micronaut-security-jwt-gradle-java/.gradle/*
 micronaut-security-jwt-gradle-java/.idea/*
 micronaut-security-jwt-gradle-java/build/*
+.idea/*
